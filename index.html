@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>手势密码</title>
+
+    <style>
+        canvas {
+            border: 1px solid #ccc;
+            background-color: rgb(236,236,239);
+        }
+
+    </style>
+</head>
+<body>
+    
+    <canvas id="gesture" width="360" height="400"></canvas>
+
+    <script src="src/js/zepto.min.js"></script>
+    <script src="src/js/gesture.password.js"></script>
+    <script>
+        var handUnclock = new HandUnclock("gesture");
+
+    </script>
+</body>
+</html>
