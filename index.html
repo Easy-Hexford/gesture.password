@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, height=device-height">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>手势密码</title>
-
     <style type="text/css">
         body {
             background-color: #ECECEF;
         }
-
-        canvas {
-            display: block;
-            margin: 0 auto;
+        #contaioner {
+            margin: 20px 0;
         }
-
+        .tips {
+            text-align: center;
+        }
+        .operation {
+            margin-top: 80px;
+            text-align: center;
+            line-height: 30px;
+        }
     </style>
     
 </head>
 <body>
     
     <div id="container"></div>
+    <div class="tips"><span>请输入手势密码</span></div>
+    <div class="operation">
+        <input type="radio" id="setPwd" name="option" value="setPwd" checked>
+        <label for='setPwd'>设置密码</label><br>
+        <input type="radio" id="verifyPwd" name="option" value="verifyPwd">
+        <label for="verifyPwd">验证密码</label>
+    </div>
 
-    <script src="src/js/zepto.min.js"></script>
-    <script src="src/js/gesture.password.js"></script>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/gesture.password.js"></script>
     <script>
-        var handUnclock = new HandUnclock("container");
-        handUnclock.init();
-
+        Zepto(function($){
+            var handUnclock = new HandUnclock("container");
+            // 根据单选按钮选择不同的模式
+            $("input[type='radio']").click(function(e) {
+                if ($(this)[0].value == 'setPwd')
+                    handUnclock.setStatus(0);
+                else 
+                    handUnclock.setStatus(2);
+            });
+        });
     </script>
 </body>
 </html>
