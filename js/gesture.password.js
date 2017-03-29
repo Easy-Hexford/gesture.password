@@ -46,9 +46,10 @@ function HandUnclock (container, opt) {
     this.ImageData = {};   
     // 是否滑动 
     this.touching = false;
-    // 手势锁的状态
-    // 0: 第一次设置密码 1: 第二次输入密码 2: 等待验证密码
+    // 手势锁的状态 0: 第一次设置密码 1: 第二次输入密码 2: 等待验证密码
     this.status = 0;
+    // 用于保存第一次输入的密码
+    this.tempPwd = '';
 
     this.init();
 }
@@ -188,14 +189,15 @@ HandUnclock.prototype.bindEvent = function() {
                 if (curPwd.length < 5) {
                     $('.tips span').text(HandUnclock.MESSAGE.tooShort);
                 } else {
-                    localStorage.setItem('gesturePwd', curPwd);
+                    self.tempPwd = curPwd;
                     $('.tips span').text(HandUnclock.MESSAGE.tips[1]);
                     self.status = 1;
                 }
                break;
             case 1:  // 第二次输入密码
-                if (localStorage.getItem('gesturePwd') == curPwd) {
+                if (self.tempPwd == curPwd) {
                     $('.tips span').text(HandUnclock.MESSAGE.setOk);
+                    localStorage.setItem('gesturePwd', curPwd);
                 } else {
                     $('.tips span').text(HandUnclock.MESSAGE.notSame);
                 }
