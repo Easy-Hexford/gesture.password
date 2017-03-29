@@ -180,6 +180,10 @@
             self.touching = false;
             self.drawLine();
             var curPwd = self.getCurPwd();
+            // 半秒后清除绘图
+            setTimeout(function() {
+                self.reset();
+            }, 1000);
             switch(self.status) {
                 case 0:  // 设置密码
                     if (curPwd.length < 5) {
@@ -212,10 +216,6 @@
                     }
                     break;
             }
-            // 半秒后清除绘图
-            setTimeout(function() {
-                self.reset();
-            }, 500);
         }
 
         // 获取mouse或者touch的触摸点
