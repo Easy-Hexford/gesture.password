@@ -4,19 +4,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>手势密码</title>
     <style type="text/css">
+        html {
+            font-size: 100px;
+        }
         body {
             background-color: #ECECEF;
         }
-        #contaioner {
-            margin: 20px 0;
+        #container {
+            margin: 0.4rem 0;
         }
         .tips {
             text-align: center;
+            font-size: 0.18rem;
         }
         .operation {
-            margin-top: 80px;
+            margin-top: 0.5rem;
             text-align: center;
-            line-height: 30px;
+            line-height: 0.3rem;
+            font-size: 0.18rem;
         }
     </style>
     
@@ -32,19 +37,21 @@
         <label for="verifyPwd">验证密码</label>
     </div>
 
-    <script src="js/zepto.min.js"></script>
-    <script src="js/gesture.password.js"></script>
+    <script src="js/handUnclock.js"></script>
     <script>
-        Zepto(function($){
-            var handUnclock = new HandUnclock("container");
+        (function() {
+            var handUnclock = new HandUnclock("#container");
             // 根据单选按钮选择不同的模式
-            $("input[type='radio']").click(function(e) {
-                if ($(this)[0].value == 'setPwd')
+            var $operation = document.querySelector('.operation');
+            // 事件委托监听单选
+            $operation.addEventListener('click', function(e) {
+                var node = e.target;
+                if (node.id == 'setPwd')
                     handUnclock.setStatus(0);
-                else 
+                else
                     handUnclock.setStatus(2);
             });
-        });
+        })();
     </script>
 </body>
 </html>
