@@ -147,9 +147,9 @@ HandUnclock.prototype.findPoint = function(x,y) {
 // 绑定触摸事件
 HandUnclock.prototype.bindEvent = function() {
     var $canvas = $(this.canvas);
-    $canvas.on('mousedown touchstart',{self: this}, handleStart);
-    $canvas.on('mousemove touchmove',{self: this}, handleMove);
-    $canvas.on('mouseup touchend', {self: this}, handleEnd);
+    $canvas.on('touchstart',{self: this}, handleStart);
+    $canvas.on('touchmove',{self: this}, handleMove);
+    $canvas.on('touchend', {self: this}, handleEnd);
 
     // 触摸屏幕，进入解锁状态
     function handleStart(evt) {
