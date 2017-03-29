@@ -183,7 +183,7 @@
             // 半秒后清除绘图
             setTimeout(function() {
                 self.reset();
-            }, 1000);
+            }, 500);
             switch(self.status) {
                 case 0:  // 设置密码
                     if (curPwd.length < 5) {
