@@ -153,12 +153,12 @@
         // 触摸屏幕，进入解锁状态
         function handleStart(evt) {
             self.ongoing = [];  // 清空之前存储的轨迹
-            self.touching = true;   // 开始滑动标识
             var touchPoint = getTouchPoint(evt);
             var point = self.findPoint(touchPoint.x, touchPoint.y);
             if (point) {    // 点亮触摸的按钮区，并加入轨迹数组
                 self.drawCirle(point, self.option.activeFillColor);
                 self.ongoing.push(point);
+                self.touching = true;   // 开始滑动标识
             }
         }
 
@@ -177,6 +177,7 @@
 
         // 手指离开，轨迹清空
         function handleEnd(evt) {
+            if (!self.touching) return;
             self.touching = false;
             self.drawLine();
             var curPwd = self.getCurPwd();

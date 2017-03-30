@@ -56,8 +56,10 @@
                 var node = e.target;
                 if (node.id == 'setPwd')
                     handUnclock.setStatus(0);
-                else
+                else {
                     handUnclock.setStatus(2);
+                    document.querySelector('.tips span').innerHTML = "请输入手势密码";
+                }
             });
         })();
     </script>
